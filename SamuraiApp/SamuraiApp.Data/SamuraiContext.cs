@@ -16,5 +16,11 @@ namespace SamuraiApp.Data
             optionsBuilder.UseSqlServer(
                 "Data Source= DESKTOP-RCPVQD3\\SQLEXPRESS; Initial Catalog = SamuraiAppData;Integrated Security=True;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SamuraiBattle>().HasKey(s => new { s.SamuraiId, s.BattleId });
+            modelBuilder.Entity<Horse>().ToTable("Horses");
+        }
     }
 }
